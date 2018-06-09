@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect()->route('admin-dashboard');
+})->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->group(function (){
+    Route::post('send/message', 'MessageController@store')->name('send-message');
+    Route::get('/', 'AdminDashboardController@index')->name('admin-dashboard');
+    Route::resource('websites', 'WebsitesController');
+    Route::resource('posts/{website}', 'PostsController');
+});

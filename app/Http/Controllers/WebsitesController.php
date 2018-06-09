@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\DBHelpers;
 use App\Website;
 use Illuminate\Http\Request;
+use App\Post;
 
 class WebsitesController extends Controller
 {
